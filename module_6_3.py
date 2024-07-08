@@ -6,12 +6,13 @@
 
 # Horse - класс описывающий лошадь.
 class Horse:
-    def __init__(self):
+    def __init__(self, *args):
         # Атрибуты класса Horse.
         # Пройденный путь.
         self.x_distance = 0
         # Звук, который издаёт лошадь.
         self.sound = 'Frrr'
+        super().__init__(*args)
 
     # Метод run(self, dx) увеличивает x_distance на dx.
     def run(self, dx):
@@ -20,12 +21,13 @@ class Horse:
 
 # Eagle - класс описывающий орла.
 class Eagle:
-    def __init__(self):
+    def __init__(self, *args):
         # Атрибуты класса Eagle.
         # Высота полёта.
         self.y_distance = 0
         # Звук, который издаёт орёл.
         self.sound = 'I train, eat, sleep, and repeat'
+        super().__init__(*args)
 
     # Метод fly(self, dy) увеличивает y_distance на dy.
     def fly(self, dy):
@@ -34,9 +36,8 @@ class Eagle:
 
 # Pegasus - класс описывающий пегаса. Наследуется от Horse и Eagle в том же порядке.
 class Pegasus(Horse, Eagle):
-    def __init__(self):
-        Horse.__init__(self)  # Инициализируем часть лошади
-        Eagle.__init__(self)  # Инициализируем часть орла
+    def __init__(self, *args):
+        super().__init__(*args)  # Инициализируем предков
 
     # Метод move(self, dx, dy) - где dx и dy изменения дистанции.
     # Этот метод запускает наследованные методы run и fly соответственно.
@@ -57,7 +58,7 @@ class Pegasus(Horse, Eagle):
 # Пример использования
 p1 = Pegasus()
 
-print(p1.get_pos())  # Вывод: (0, 0)
+print(p1.get_pos())  # Вы вод: (0, 0)
 p1.move(10, 15)  # Первое перемещение Пегаса
 print(p1.get_pos())  # Вывод: (10, 15)
 p1.move(-5, 20)  # Второе перемещение Пегаса
